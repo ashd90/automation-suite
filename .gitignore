@@ -1,0 +1,5 @@
+# Ignore the log file so it doesn't clutter GitHub
+backup.log
+# Ignore any potential secret files
+*.pem
+*.key
