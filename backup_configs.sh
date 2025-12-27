@@ -29,6 +29,7 @@ cd "$BACKUP_DIR" || exit
 if [[ -n $(git status --porcelain) ]]; then
     git add .
     git commit -m "Automated backup: $TIMESTAMP"
+    git push origin main
     echo "Changes committed to Git." | tee -a "$LOG_FILE"
 else
     echo "No changes detected. Skipping commit." | tee -a "$LOG_FILE"
