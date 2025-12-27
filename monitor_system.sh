@@ -26,6 +26,19 @@ else
     echo -e "Disk Usage: ${GREEN}${DISK_USAGE}% - OK${NC}"
 fi
 
-# --- 5. Logging to CSV (Industry Practice) ---
-# Append date, RAM, and Disk to a file
-echo "$(date '+%Y-%m-%d %H:%M:%S'),$RAM_USAGE,$DISK_USAGE" >> system_stats.csv
+# --- 1. Get CPU Load ---
+CPU_LOAD=$(uptime | awk -F'load average:' '{ print $2 }' | awk -F',' '{ print $1 }' | xargs)
+
+# --- 2. CPU Logic (Job-Ready Strategy) ---
+# Since CPU_LOAD is a decimal (like 0.45), we use 'bc' to compare
+# First, install bc: sudo pacman -S bc
+CPU_THRESHOLD=10.0
+
+if (( $(echo "$CPU_LOAD > $CPU_THRESHOLD" | bc -l) )); then
+    echo -e "CPU Load: ${RED}${CPU_LOAD}${NC} - HIGH LOAD"
+else
+    echo -e "CPU Load: ${GREEN}${CPU_LOAD}${NC} - OK"
+fi
+
+# --- 3. Update CSV Logging ---
+echo "$(date '+%Y-%m-%d %H:%M:%S'),$RAM_USAGE,$DISK_USAGE,$CPU_LOAD" >> system_stats.csv
