@@ -3,3 +3,4 @@ backup.log
 # Ignore any potential secret files
 *.pem
 *.key
+*.csv
