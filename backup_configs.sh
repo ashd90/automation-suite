@@ -7,7 +7,7 @@ TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
 LOG_FILE="$BACKUP_DIR/backup.log"
 
 # --- 2. Define target apps to track ---
-TARGETS=("hypr" "mpv" "waybar")
+TARGETS=("hypr" "mpv" "waybar" "mpd")
 
 echo "[$TIMESTAMP] Starting Config Backup..." | tee -a "$LOG_FILE"
 
