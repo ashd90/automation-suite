@@ -4,3 +4,6 @@ backup.log
 *.pem
 *.key
 *.csv
+database
+pip
+state
