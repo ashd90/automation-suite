@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # --- 1. Variables (Clean & Maintainable) ---
-BACKUP_DIR="$HOME/programming/devops/automation-suite"
+BACKUP_DIR="$HOME/devops/automation-suite"
 CONFIG_SRC="$HOME/.config"
 TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
 LOG_FILE="$BACKUP_DIR/backup.log"
