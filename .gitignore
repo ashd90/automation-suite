@@ -4,6 +4,6 @@ backup.log
 *.pem
 *.key
 *.csv
-database
-pip
-state
+mpd/database
+mpd/pip
+mpd/state
