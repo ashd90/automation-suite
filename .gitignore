@@ -5,5 +5,5 @@ backup.log
 *.key
 *.csv
 mpd/database
-mpd/pip
+mpd/pid
 mpd/state
