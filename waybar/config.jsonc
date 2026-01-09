@@ -8,7 +8,7 @@
   "spacing": 4,
 
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
-  "modules-center": ["clock", "custom/update", "custom/screenrecording-indicator"],
+  "modules-center": ["clock", "custom/update", "custom/voxtype", "custom/screenrecording-indicator"],
   "modules-right": ["mpd", "temperature", "cpu", "memory", "network", "pulseaudio", "tray"],
 
   "hyprland/workspaces": {
@@ -74,10 +74,11 @@
 
   "pulseaudio": { 
     "format": "{icon}  {volume}%", 
-    "on-click": "omarchy-launch-or-focus-tui wiremix", 
+    "on-click": "omarchy-launch-audio", 
     "on-click-right": "pamixer -t",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,
+      "headphone": "",
     "format-icons": { "default": ["", "", ""] } 
   },
 
@@ -90,6 +91,19 @@
     "tooltip": true,
     "tooltip-format": "Screen Recording Status\nLeft-click: Start/Stop\nSaves to: ~/Videos/Recordings",
     "class": "recording" 
+  },
+  "custom/voxtype": {
+    "exec": "omarchy-voxtype-status",
+    "return-type": "json",
+    "format": "{icon}",
+    "format-icons": {
+      "idle": "",
+      "recording": "󰍬",
+      "transcribing": "󰔟"
+    },
+    "tooltip": true,
+    "on-click-right": "omarchy-voxtype-config",
+    "on-click": "omarchy-voxtype-model"
   },
   "tray": { 
     "icon-size": 18,

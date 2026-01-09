@@ -16,21 +16,30 @@ source = ~/.config/omarchy/current/theme/hyprland.conf
 source = ~/.config/hypr/monitors.conf
 source = ~/.config/hypr/input.conf
 source = ~/.config/hypr/bindings.conf
-source = ~/.config/hypr/envs.conf
 source = ~/.config/hypr/looknfeel.conf
 source = ~/.config/hypr/autostart.conf
 
 # Add any other personal Hyprland configuration below
 # windowrule = workspace 5, class:qemu
 
+windowrulev2 = workspace 9, class:^(mpv)$
 windowrulev2 = workspace 1, class:^(.*chrome-youtube.com__-Default.*)$
 windowrulev2 = workspace 2, class:^(.*org.gnome.Nautilus.*)$
-windowrulev2 = workspace 3, class:^(.*brave-browser.*)$
-windowrulev2 = workspace 4, class:^(.*chrome-udemy.com__-Default.*)$
-windowrulev2 = workspace 5, class:^(.*code.*)$
-windowrulev2 = workspace 9, class:^(mpv)$
+windowrulev2 = workspace 5, class:^(.*chrome-udemy.com__-Default.*)$
+windowrulev2 = workspace 4, class:^(.*code.*)$
 
-windowrulev2 = float, size 1600 900, class:^(mpv)$
+layerrule = blur,waybar
+layerrule = xray,waybar
 
-exec-once = mpd
+# ===== FORCE PERSISTENT WORKSPACES (REQUIRED FOR WAYBAR OCCUPIED COLORS) =====
+
+workspace = 1, persistent:true
+workspace = 2, persistent:true
+workspace = 3, persistent:true
+workspace = 4, persistent:true
+workspace = 5, persistent:true
+workspace = 6, persistent:true
+workspace = 7, persistent:true
+workspace = 8, persistent:true
+workspace = 9, persistent:true
 
