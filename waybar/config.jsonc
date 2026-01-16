@@ -7,9 +7,9 @@
   "margin-right": 6,
   "spacing": 4,
 
-  "modules-left": ["hyprland/workspaces", "custom/sep", "hyprland/window"],
-  "modules-center": ["clock", "custom/sep", "idle_inhibitor", "custom/sep", "custom/update", "custom/voxtype", "custom/screenrecording-indicator"],
-  "modules-right": ["mpd", "custom/sep", "temperature", "cpu", "memory", "disk", "custom/sep", "network", "pulseaudio", "tray"],
+  "modules-left": ["hyprland/workspaces", "hyprland/window"],
+  "modules-center": ["clock", "idle_inhibitor", "custom/update", "custom/screenrecording-indicator"],
+  "modules-right": ["mpd", "temperature", "cpu", "memory", "disk", "network", "pulseaudio", "tray"],
 
   "hyprland/workspaces": {
     "on-click": "activate",
@@ -18,16 +18,14 @@
   },
 
   "hyprland/window": { 
-    "format": "󰣆  {}", 
-    "max-length": 45 
+    "format": "󰣆  {title}", 
+    "max-length": 30 
   },
 
   "idle_inhibitor": {
     "format": "{icon}",
-    "format-icons": {
-        "activated": "󰅶",
-        "deactivated": "󰾆"
-    },
+    "format-icons": { "activated": "󰅶", "deactivated": "󰾆" },
+    "tooltip": true,
     "tooltip-format-activated": "Idle Inhibitor: Active (Stay Awake)",
     "tooltip-format-deactivated": "Idle Inhibitor: Inactive"
   },
@@ -38,9 +36,7 @@
     "calendar": {
         "mode": "month",
         "on-scroll": 1,
-        "format": {
-            "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
-        }
+        "format": { "today": "<span color='#ff6699'><b><u>{}</u></b></span>" }
     }
   },
 
@@ -57,19 +53,16 @@
     "exec": "omarchy-update-available",
     "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
     "tooltip-format": "Omarchy update available",
-    "signal": 7,
     "interval": 21600
   },
 
   "cpu": { "format": " {usage}%", "on-click": "alacritty -e btop" },
-  "memory": { "format": "  {percentage}%", "on-click": "alacritty -e btop" },
+  "memory": { "format": "  {percentage}%", "on-click": "alacritty -e btop", "tooltip-format": "Memory: {used}GB / {total}GB" },
   "temperature": { "format": " {temperatureC}°C" },
 
   "network": {
-    "format": "{icon}",
+    "format": "{icon} {signalStrength}%",
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-    "format-wifi": "{icon} {signalStrength}%",
-    "format-disconnected": "󰤮",
     "tooltip-format": "SSID: {essid}\nSpeed: {bandwidthDownBits} ↓ {bandwidthUpBits} ↑",
     "on-click": "omarchy-launch-wifi"
   },
@@ -78,10 +71,9 @@
     "format": "{stateIcon} {randomIcon}{repeatIcon} {title} - {artist} ",
     "format-disconnected": "󰝛 Disconnected",
     "format-stopped": "󰓛 Stopped",
-    "unknown-tag": "Unknown", 
-    "max-length": 45,
     "interval": 2,
-    "tooltip-format": "Artist: {artist}\nTitle: {title}\nTime: {elapsedTime:%M:%S}/{totalTime:%M:%S}\n\nL-Click: Play/Pause\nM-Click: Shuffle\nR-Click: Repeat\nScroll: Skip",
+    "max-length": 40,
+    "tooltip-format": "Artist: {artist}\nTitle: {title}\nTime: {elapsedTime:%M:%S}/{totalTime:%M:%S}",
     "on-click": "mpc toggle",
     "on-click-right": "mpc repeat",
     "on-click-middle": "mpc random",
@@ -93,44 +85,26 @@
   },
 
   "pulseaudio": { 
-    "format": "{icon}  {volume}%", 
+    "format": "{icon} {volume}%", 
     "on-click": "omarchy-launch-audio", 
     "on-click-right": "pamixer -t",
-    "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,
-    "headphone": "",
+    "tooltip-format": "Volume: {volume}%",
     "format-icons": { "default": ["", "", ""] } 
   },
 
   "custom/screenrecording-indicator": { 
     "on-click": "omarchy-cmd-screenrecord", 
     "exec": "$OMARCHY_PATH/default/waybar/indicators/screen-recording.sh", 
-    "signal": 8, 
     "return-type": "json", 
-    "format": "<span font='13' foreground='#ff3131'>󰑋</span>", 
+    "format": "󰑋", 
     "tooltip": true,
-    "tooltip-format": "Screen Recording Status\nLeft-click: Start/Stop\nSaves to: ~/Videos/Recordings",
-    "class": "recording" 
-  },
-
-  "custom/voxtype": {
-    "exec": "omarchy-voxtype-status",
-    "return-type": "json",
-    "format": "{icon}",
-    "format-icons": { "idle": "", "recording": "󰍬", "transcribing": "󰔟" },
-    "tooltip": true,
-    "on-click-right": "omarchy-voxtype-config",
-    "on-click": "omarchy-voxtype-model"
+    "tooltip-format": "Screen Recording Status\nLeft-click: Start/Stop\nSaves to: ~/Videos/Recordings"
   },
 
   "tray": { 
-    "icon-size": 18,
-    "spacing": 10,
+    "icon-size": 18, 
+    "spacing": 10, 
     "show-passive-items": false 
-  },
-
-  "custom/sep": {
-    "format": "|",
-    "tooltip": false
   }
 }
